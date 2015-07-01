@@ -20,10 +20,6 @@ Gem::Specification.new do |s|
 
   s.license       = "Apache 2.0"
 
-  if s.respond_to?(:metadata)
-    s.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
-  end
-
   s.add_dependency "activesupport", "~> 4.2"
   s.add_dependency 'excon', '~> 0.44'
 
