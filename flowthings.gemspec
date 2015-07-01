@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email         = ["dev@flowthings.io"]
 
   s.summary       = %q{A rubygem for the flowthings.io platform.}
-  s.description   = %q{flowthings.io is an agile intelligence platform that is sifically geared towards the Internet of Things. This is our Ruby Client.}
+  s.description   = %q{flowthings.io is an agile intelligence platform that is specifically geared towards the Internet of Things. This is our Ruby Client.}
   s.homepage      = "https://flowthings.io"
 
   s.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|s|features)/}) }
