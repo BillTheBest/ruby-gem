@@ -4,7 +4,7 @@ module Flowthings
   module Crud
     module Find
       include Flowthings::CrudUtils
-      
+
       def find(params={})
         path_params = {}
         path = mk_path(path_params)
