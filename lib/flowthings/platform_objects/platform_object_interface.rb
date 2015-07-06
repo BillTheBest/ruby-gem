@@ -22,7 +22,7 @@ module Flowthings
       check_platform_object
 
       Configuration::VALID_CONFIG_KEYS.each do |key|
-        instance_variable_set("@#{key}", options[key])
+        instance_variable_set "@#{key}", options[key]
       end
 
       @connection = connection

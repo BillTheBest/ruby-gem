@@ -16,10 +16,10 @@ module Flowthings
 
     def initialize(options={})
       @services = [ApiTask, Drop, Flow, Group, Identity, Mqtt, Share, Token, Track]
-      merged_options = Flowthings.options.merge(options)
+      merged_options = Flowthings.options.merge options
 
       Configuration::VALID_CONFIG_KEYS.each do |key|
-        send("#{key}=", merged_options[key])
+        send "#{key}=", merged_options[key]
       end
 
       service_factory
@@ -29,7 +29,7 @@ module Flowthings
     def get_options
       opts = {}
       Configuration::VALID_CONFIG_KEYS.each do |key|
-        opts[key.to_sym] = send("#{key}")
+        opts[key.to_sym] = send "#{key}"
       end
 
       opts
@@ -42,13 +42,13 @@ module Flowthings
         service_name = service.name.underscore.split("/")[1]
 
         if service_name == "drop"
-          instance_eval(<<-EOS)
+          instance_eval <<-EOS
             def #{service_name}(flowId)
               #{service}.new flowId, connection, get_options
             end
           EOS
         else
-          instance_eval(<<-EOS)
+          instance_eval <<-EOS
             def #{service_name}
               #{service}.new connection, get_options
             end

@@ -67,11 +67,6 @@ describe Flowthings::Drop do
                         }
                       }
                      }
-
-      @aggregation = {
-        "filter": "EXISTS elem_name",
-        "output": ["$count"]
-      }
     end
 
     after(:example) do
@@ -119,8 +114,8 @@ describe Flowthings::Drop do
       @api.drop(@flowId).create(@drop)
 
       @aggregation = {
-        "filter": "EXISTS elem_name",
-        "output": ["$count"]
+        "filter" => "EXISTS elem_name",
+        "output" => ["$count"]
       }
     end
 

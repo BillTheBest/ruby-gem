@@ -10,7 +10,7 @@ module Flowthings
 
       def find_many(filters={}, params={})
         path = mk_path
-        params = mk_params(params)
+        params = mk_params params
         data = []
 
         @flowIds.each do flowId
@@ -23,7 +23,7 @@ module Flowthings
         end
 
 
-        platform_mget(path, params=params, data=data)
+        platform_mget path, params=params, data=data
       end
     end
   end
