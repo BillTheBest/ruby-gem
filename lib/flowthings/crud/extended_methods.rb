@@ -1,6 +1,10 @@
+require 'flowthings/utils/crud_utils'
+
 module Flowthings
   module Crud
     module ExtendedMethods
+      include Flowthings::CrudUtils
+
       def delete_all(params={})
       end
 
