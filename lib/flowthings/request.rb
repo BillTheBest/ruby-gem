@@ -15,7 +15,7 @@ module Flowthings
     end
 
     def platform_post(path, data, params={}, options={})
-      request :post, path, params, options, data=data
+      request :post, path=path, params=params, options=options, data=data
     end
 
     def platform_put(path, data, params={}, options={})
@@ -30,7 +30,7 @@ module Flowthings
       request :delete, path, params, options
     end
 
-    def request(method, path, params, options, data={})
+    def request(method, path, params={}, options={}, data={})
 
       case method.to_sym
       when :get, :delete
@@ -38,15 +38,16 @@ module Flowthings
                         query: params,
                         method: method.to_sym)
       when :post, :put, :mget
-        body = params unless params.empty?
-        body = JSON.generate body
+        body = data unless data.empty?
+        body = JSON.generate(body)
         response = @connection.request(path: path,
                         query: params,
                         method: method.to_sym,
                         body: body)
       end
 
-      raise_error response
+      raise_error(response)
+
 
       response = response.data
 

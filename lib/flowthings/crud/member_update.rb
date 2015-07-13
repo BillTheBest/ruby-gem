@@ -10,7 +10,7 @@ module Flowthings
         params = mk_params params
         data = mk_data data
 
-        platform_put path, params=params, data=data
+        platform_put path, data=data, params=params
       end
     end
   end

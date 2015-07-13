@@ -4,7 +4,6 @@ module Flowthings
   module Crud
     module ExtendedMethods
       include Flowthings::CrudUtils
-
       def delete_all(params={})
       end
 
@@ -23,7 +22,7 @@ module Flowthings
         end
 
 
-        platform_mget path, params=params, data=data
+        platform_mget path, data=data, params=params
       end
     end
   end

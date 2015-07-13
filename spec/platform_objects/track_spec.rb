@@ -11,6 +11,42 @@ describe Flowthings::Track do
                                   })
   end
 
+  describe ".create" do
+    before(:example) do
+      @path = "/" + @account_name + "/ruby-client-test"
+      @destination_path = "/" + @account_name + "/ruby-client-test/destination"
+
+      @flow = @api.flow.create "path" => @path, "description" => "description"
+      @destination_flow = @api.flow.create "path" => @destination_path, "description" => "description"
+
+      @flowId = @flow["id"]
+      @flowId_destination = @destination_flow["id"]
+
+      @track = {
+        "source" => @path,
+        "destination" => @destination_path,
+        "js" => "function (input_drop) {
+              var a = input_drop.elems.a.value;
+              input_drop.elems.b = a  * 3;
+              return input_drop;
+            }"
+      }
+    end
+
+    it "should create a track properly" do
+      @track_response = @api.track.create @track
+
+      expect(@track_response["js"]).not_to be_empty
+      expect(@track_response["source"]).to eq @path
+      expect(@track_response["destination"]).to eq @destination_path
+    end
+
+    after(:example) do
+      @api.flow.delete @flowId
+    end
+
+  end
+
   describe ".simulate" do
     it "should simulate track output" do
 
