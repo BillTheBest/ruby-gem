@@ -13,7 +13,7 @@ describe Flowthings::Flow do
   describe ".read" do
     it "should get the proper information from the platform" do
       api = Flowthings::Client.new({account_name: 'greg',
-                                     account_token: "p2lAhiLuQeqWN0EMeClmTAYPjgPy"})
+                                     account_token: "3PxWefluMlQeMtFpy9WPGkeijU5G"})
 
       response = {"id" => "f55171ff90cf2ece6103ef410",
                   "capacity" => 1000,

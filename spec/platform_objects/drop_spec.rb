@@ -18,7 +18,7 @@ describe Flowthings::Drop do
   describe ".get" do
     it "should get the proper information from the platform" do
       api = Flowthings::Client.new({account_name: "greg",
-                                     account_token: "p2lAhiLuQeqWN0EMeClmTAYPjgPy"})
+                                     account_token: "3PxWefluMlQeMtFpy9WPGkeijU5G"})
 
       result = {
         "id" => "d551720070cf25d405fb1e495",
