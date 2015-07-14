@@ -35,10 +35,13 @@ module Flowthings
         platform_delete path, params=params
       end
 
-      def read_many(params={})
+      def read_many(ids, params={})
         # read many is essentially a neutered version of find.
+        # this is largely unimplemented
         path = mk_path
         params = mk_params params
+
+        raise "This is not yet implemented"
 
         platform_get path, params=params
       end

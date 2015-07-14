@@ -20,8 +20,8 @@ module Flowthings
 
       path = [@platform_version, @account_name, service_path[self.class.name]]
 
-      if @flowId
-        path << @flowId
+      if @flow_id
+        path << @flow_id
       end
 
       if params[:id]

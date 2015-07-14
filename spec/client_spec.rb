@@ -28,20 +28,6 @@ describe Flowthings::Client do
           end
         end
 
-        if service == 'drop'
-          it "should throw an error if it is called without an argument" do
-            expect { @api.send("#{service}") }.to raise_error
-          end
-
-          it "should raise an argument error" do
-            expect { @api.send("#{service}") }.to raise_error(ArgumentError)
-          end
-
-          it "should not throw an error if it is called with an argument" do
-            expect { @api.send("#{service}", "d") }.not_to raise_error
-          end
-        end
-
       end # describe block
 
     end # services loop

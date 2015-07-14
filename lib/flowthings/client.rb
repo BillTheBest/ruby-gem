@@ -43,8 +43,8 @@ module Flowthings
 
         if service_name == "drop"
           instance_eval <<-EOS
-            def #{service_name}(flowId)
-              #{service}.new flowId, connection, get_options
+            def #{service_name}(flow_id=nil)
+              #{service}.new flow_id, connection, get_options
             end
           EOS
         else

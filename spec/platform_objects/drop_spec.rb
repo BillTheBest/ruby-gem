@@ -93,6 +93,27 @@ describe Flowthings::Drop do
       expect(destroy_response.empty?).to be true
     end
 
+    it "should create a flow with a path and no flow_id" do
+      @drop["path"] = @path
+
+      create_response = @api.drop.create @drop
+      expect(create_response.empty?).not_to be true
+      expect(create_response["flowId"]).to eq(@flowId)
+      expect(create_response["elems"]).to eq(@drop["elems"])
+    end
+
+    it "should error if it does not have a path or a flow_id" do
+      expect {
+        @api.drop.create @drop
+      }.to raise_error
+    end
+
+    it "should be an argument error" do
+      expect {
+        @api.drop.create @drop
+      }.to raise_error(ArgumentError)
+    end
+
   end
 
   describe ".aggregate" do

@@ -17,12 +17,12 @@ module Flowthings
         params = mk_params params
         data = []
 
-        @flowIds.each do flowId
-          if filters[flowId]
-            data << {"flowId" => flowId,
-                     "params" => filters[flowId]}
+        @flow_ids.each do flow_id
+          if filters[flow_id]
+            data << {"flowId" => flow_id,
+                     "params" => filters[flow_id]}
           else
-            data << {"flowId" => flowId}
+            data << {"flowId" => flow_id}
           end
         end
 
