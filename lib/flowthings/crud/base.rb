@@ -35,6 +35,13 @@ module Flowthings
         platform_delete path, params=params
       end
 
+      def read_all(params={})
+        path = mk_path
+        params = mk_params params
+
+        platform_get path, params=params
+      end
+
       alias_method :delete, :destroy
     end
   end
