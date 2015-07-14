@@ -4,7 +4,12 @@ module Flowthings
   module Crud
     module ExtendedMethods
       include Flowthings::CrudUtils
-      def delete_all(params={})
+
+      def destroy_all(params={})
+        path = mk_path
+        params = mk_params params
+
+        platform_delete path, params=params
       end
 
       def find_many(filters={}, params={})
@@ -24,6 +29,8 @@ module Flowthings
 
         platform_mget path, data=data, params=params
       end
+
+      alias_method :delete_all, :destroy_all
     end
   end
 end

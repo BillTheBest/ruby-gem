@@ -13,7 +13,7 @@ module Flowthings
         platform_post path, data=data, params=params
       end
 
-      def read(id, params={})
+      def read(id=nil, params={})
         path = mk_path id: id
         params = mk_params params
 
