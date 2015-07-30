@@ -11,19 +11,30 @@ module Flowthings
       @session_id = platform_post("/session")["id"]
       @ws_url = "wss://ws.flowthings.io/session/#{session_id}/ws"
 
-      @on = {
-        open: [],
-        message: [],
-        close: []
-      }
+      @on = {}
     end
 
-    def on(event)
-      # I'm not sure what the best way to do this is.
+    def on(event, &blk)
+      @on[event] = blk
     end
 
-    def run
+    def send(data)
 
+    end
+
+    def run(&blk)
+      ws = Faye::WebSocket::Client.new(ws_url)
+
+      blk.call()
+    end
+
+    def drop
+    end
+
+    def track
+    end
+
+    def flow
     end
 
   end
