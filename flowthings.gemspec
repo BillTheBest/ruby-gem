@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "activesupport", "~> 4.2"
   s.add_dependency 'excon', '~> 0.44'
+  s.add_dependency 'faye-websocket', '~ 0.10.0'
+  s.add_dependency 'eventmachine', '>= 0.12.0'
 
   s.add_development_dependency "bundler", "~> 1.8"
   s.add_development_dependency "rake", "~> 10.0"

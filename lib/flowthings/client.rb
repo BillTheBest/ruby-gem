@@ -14,7 +14,7 @@ module Flowthings
     attr_accessor *Configuration::VALID_CONFIG_KEYS
     include Flowthings::Connection
 
-    def initialize(options={})
+    def initialize(options = {})
       @services = [ApiTask, Drop, Flow, Group, Identity, Mqtt, Share, Token, Track]
       merged_options = Flowthings.options.merge options
 
@@ -26,6 +26,7 @@ module Flowthings
     end
 
     private
+
     def get_options
       opts = {}
       Configuration::VALID_CONFIG_KEYS.each do |key|
@@ -39,12 +40,18 @@ module Flowthings
       @services.each do |service|
         # service.name.underscore looks like this: flowthings/api_importer
         # so, I have to split it like that.
-        service_name = service.name.underscore.split("/")[1]
+        service_name = service.name.underscore.split('/')[1]
 
-        if service_name == "drop"
+        if service_name == 'drop'
           instance_eval <<-EOS
             def #{service_name}(flow_id=nil)
               #{service}.new flow_id, connection, get_options
+            end
+          EOS
+        elsif service_name == 'Websocket'
+          instance_eval <<-EOS
+            def #{service_name}
+              #{service}.new ws_connection, get_options
             end
           EOS
         else
@@ -54,10 +61,7 @@ module Flowthings
             end
           EOS
         end
-
       end
-
     end
-
   end
 end
