@@ -184,7 +184,7 @@ describe Flowthings::Drop do
       expect {
         begin
           @api.drop(@flowId).create(@drop)
-        rescue Flowthings::Error::BadRequest => e
+        rescue Flowthings::Error::ClientError => e
           error = e
         end
 
