@@ -31,23 +31,27 @@ module Flowthings
     end
 
     def request(method, path, params={}, options={}, data={})
+      if options['ws']
+        conn = @ws_connection
+      else
+        conn = @connection
+      end
 
       case method.to_sym
       when :get, :delete
-        response = @connection.request(path: path,
-                        query: params,
-                        method: method.to_sym)
+        response = conn.request(path: path,
+                                query: params,
+                                method: method.to_sym)
       when :post, :put, :mget
         body = data unless data.empty?
         body = JSON.generate(body)
-        response = @connection.request(path: path,
-                        query: params,
-                        method: method.to_sym,
-                        body: body)
+        response = conn.request(path: path,
+                                query: params,
+                                method: method.to_sym,
+                                body: body)
       end
 
       raise_error(response)
-
 
       response = response.data
 

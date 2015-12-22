@@ -23,16 +23,12 @@ module Flowthings
     end
 
     def ws_connection
-      url = @ws_endpoint
-      if @secure
-        url = 'https://' + url
-      else
-        url = 'http://' + url
-      end
+      url = 'https://' + @ws_endpoint
 
-      @connection = Excon.new(url,
+      @ws_connection = Excon.new(url,
                               headers: {
                                 'X-Auth-Token' => @account_token,
+                                'X-Auth-Account' => @account_name,
                                 'Content-Type' => 'application/json',
                                 'User-Agent' => @user_agent
                               })

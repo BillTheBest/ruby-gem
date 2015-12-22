@@ -26,6 +26,7 @@ module Flowthings
       end
 
       @connection = connection
+      @ws_connection = ws_connection
 
       @account_name=options[:account_name]
       @account_token=options[:account_token]

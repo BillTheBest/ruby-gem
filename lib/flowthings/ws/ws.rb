@@ -8,14 +8,22 @@ module Flowthings
     include Flowthings::Request
 
     def initialize
-      @session_id = platform_post("/session")["id"]
+      session_id = platform_post("/session", {}, {}, {ws: true})["id"]
       @ws_url = "wss://ws.flowthings.io/session/#{session_id}/ws"
 
-      @on = {}
+      @on = {
+        drop: [],
+        track: [],
+        flow: []
+      }
     end
 
     def on(event, &blk)
-      @on[event] = blk
+      if @on.key? event
+        @on[event].push(blk)
+      else
+        @on[event] = [blk]
+      end
     end
 
     def send(data)
@@ -28,7 +36,7 @@ module Flowthings
       blk.call()
     end
 
-    def drop
+    def drop(flow_id)
     end
 
     def track
