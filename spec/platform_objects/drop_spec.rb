@@ -102,13 +102,7 @@ describe Flowthings::Drop do
       expect(create_response["elems"]).to eq(@drop["elems"])
     end
 
-    it "should error if it does not have a path or a flow_id" do
-      expect {
-        @api.drop.create @drop
-      }.to raise_error
-    end
-
-    it "should be an argument error" do
+    it "should error with an ArgumentError if it does not have a path or a flow_id" do
       expect {
         @api.drop.create @drop
       }.to raise_error(ArgumentError)
@@ -177,7 +171,7 @@ describe Flowthings::Drop do
     it "should error when appropriate" do
       expect {
         @api.drop(@flowId).create(@drop)
-      }.to raise_error
+      }.to raise_error(Flowthings::Error::NotFound)
     end
 
     it "should be able to rescue from an error" do
@@ -187,7 +181,6 @@ describe Flowthings::Drop do
         rescue Flowthings::Error::ClientError => e
           error = e
         end
-
       }.not_to raise_error
     end
 
